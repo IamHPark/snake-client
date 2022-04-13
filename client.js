@@ -1,6 +1,8 @@
 const net = require('net');
 // establish a connection with the game server 
 // move connect function from play.js to client.js
+
+
 const connect = function () {
   const conn = net.createConnection({
     host: '165.227.47.243',
@@ -17,6 +19,11 @@ const connect = function () {
     conn.write('Name: SOO');
   });
   
+  conn.on('data', (data) => {
+    console.log(data);
+  })
+
+
   //hard-coding : command for moving 
   // conn.on('connect', () => {
   //     setTimeout( () => { conn.write("Move: up"); }, 1000)
@@ -35,4 +42,4 @@ const connect = function () {
   return conn;
 };
 
-module.exports = connect;
+module.exports = { connect };
