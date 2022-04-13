@@ -1,3 +1,4 @@
+const { keys } = require('./constants');
 let connection;
 
 const setupInput = function(conn) {
@@ -10,6 +11,18 @@ const setupInput = function(conn) {
   return stdin;
 };
 
+const handleUserInput = function(pressedKey) {
+  Object.keys(keys).map( (key, index) => {
+    if(pressedKey === '\u0003') {
+      process.exit();
+    }
+    if(key === pressedKey ) {
+      connection.write(keys[key]);
+    }
+  });
+};
+
+/*
 const handleUserInput = function (key) {
   if (key === '\u0003') {
     process.stdout.write('exit game\n');
@@ -31,5 +44,6 @@ const handleUserInput = function (key) {
     connection.write("Say: say something!");
   }
 };
+*/
 
 module.exports = { setupInput };
